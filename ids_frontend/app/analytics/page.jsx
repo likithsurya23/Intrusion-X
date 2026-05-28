@@ -68,7 +68,8 @@ const Analytics = () => {
 
   // Weekly traffic trends with your metrics
   const trafficTrends = React.useMemo(() => Array.from({ length: 7 }, (_, i) => {
-    const baseNormal = 800 + Math.random() * 400;
+    const pseudoRandom = ((i * 167 + 345) % 100) / 100;
+    const baseNormal = 800 + pseudoRandom * 400;
     const attackRate = 0.11;
     return {
       day: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][i],
@@ -199,30 +200,30 @@ const Analytics = () => {
         return (
           <>
             {/* Attack Distribution */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-4 md:p-6 shadow-sm">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 md:mb-6">
+            <div className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-2.5 sm:p-4 md:p-6 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 md:mb-6">
                 <div className="flex items-center gap-2 md:gap-3">
-                  <div className="p-1.5 md:p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20">
+                  <div className="p-1.5 rounded-lg bg-blue-50 dark:bg-blue-900/20">
                     <PieChart className="h-4 w-4 md:h-5 md:w-5 text-blue-600 dark:text-blue-400" />
                   </div>
-                  <h2 className="text-base md:text-xl font-bold text-gray-900 dark:text-white">Attack Distribution</h2>
+                  <h2 className="text-sm sm:text-base md:text-xl font-bold text-gray-900 dark:text-white">Attack Distribution</h2>
                 </div>
-                <span className="text-xs md:text-sm text-gray-500 dark:text-gray-400">CICIoT2023</span>
+                <span className="text-[10px] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400">CICIoT2023</span>
               </div>
 
-              <div className="h-60 md:h-72">
+              <div className="h-48 sm:h-60 md:h-72">
                 <ResponsiveContainer width="100%" height="100%">
                   <RechartsPieChart>
                     <Pie
                       data={attackDistribution}
                       cx="50%"
                       cy="50%"
-                      innerRadius={40}
-                      outerRadius={70}
+                      innerRadius={30}
+                      outerRadius={55}
                       paddingAngle={2}
                       dataKey="value"
                       label={({ name, percent }) => `${(percent * 100).toFixed(0)}%`}
-                      labelStyle={{ fontSize: '11px', fill: '#6b7280' }}
+                      labelStyle={{ fontSize: '9px', fill: '#6b7280' }}
                     >
                       {attackDistribution.map((entry, index) => (
                         <Cell
@@ -245,22 +246,22 @@ const Analytics = () => {
                 </ResponsiveContainer>
               </div>
 
-              <div className="mt-4 md:mt-6 grid grid-cols-2 sm:grid-cols-3 gap-2 md:gap-3">
+              <div className="mt-3 md:mt-6 grid grid-cols-2 sm:grid-cols-3 gap-1.5 sm:gap-2 md:gap-3">
                 {attackDistribution.map((attack, index) => {
                   const Icon = attack.icon;
                   return (
-                    <div key={index} className="flex items-center gap-2 p-2 md:p-3 rounded-lg border border-gray-200 dark:border-gray-800">
+                    <div key={index} className="flex items-center gap-1.5 p-1.5 sm:p-2 md:p-3 rounded-lg border border-gray-200 dark:border-gray-800">
                       <div
-                        className="w-2 h-2 md:w-3 md:h-3 rounded-full flex-shrink-0"
+                        className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full flex-shrink-0"
                         style={{ backgroundColor: attack.color }}
                       />
-                      <Icon className="h-3 w-3 md:h-4 md:w-4 text-gray-500 dark:text-gray-400 flex-shrink-0" />
+                      <Icon className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 text-gray-500 dark:text-gray-400 flex-shrink-0" />
                       <div className="flex-1 min-w-0">
-                        <p className="font-medium text-xs md:text-sm text-gray-900 dark:text-gray-100 truncate">
+                        <p className="font-medium text-[10px] sm:text-xs md:text-sm text-gray-900 dark:text-gray-100 truncate">
                           {attack.name.replace(' Attacks', '')}
                         </p>
                       </div>
-                      <span className="font-bold text-xs md:text-sm text-gray-900 dark:text-white">{attack.value}%</span>
+                      <span className="font-bold text-[10px] sm:text-xs md:text-sm text-gray-900 dark:text-white">{attack.value}%</span>
                     </div>
                   );
                 })}
@@ -268,33 +269,32 @@ const Analytics = () => {
             </div>
 
             {/* Traffic Trends */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-4 md:p-6 shadow-sm">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 md:mb-6">
+            <div className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-2.5 sm:p-4 md:p-6 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 md:mb-6">
                 <div className="flex items-center gap-2 md:gap-3">
-                  <div className="p-1.5 md:p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20">
+                  <div className="p-1.5 rounded-lg bg-blue-50 dark:bg-blue-900/20">
                     <Activity className="h-4 w-4 md:h-5 md:w-5 text-blue-600 dark:text-blue-400" />
                   </div>
-                  <h2 className="text-base md:text-xl font-bold text-gray-900 dark:text-white">Weekly Traffic</h2>
+                  <h2 className="text-sm sm:text-base md:text-xl font-bold text-gray-900 dark:text-white">Weekly Traffic</h2>
                 </div>
-
               </div>
 
-              <div className="h-60 md:h-72">
+              <div className="h-48 sm:h-60 md:h-72">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={trafficTrends}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" className="opacity-30 dark:opacity-10" />
                     <XAxis
                       dataKey="day"
                       stroke="#6b7280"
-                      tick={{ fontSize: 10, fill: '#6b7280' }}
+                      tick={{ fontSize: 9, fill: '#6b7280' }}
                     />
                     <YAxis
                       stroke="#6b7280"
-                      tick={{ fontSize: 10, fill: '#6b7280' }}
-                      width={30}
+                      tick={{ fontSize: 9, fill: '#6b7280' }}
+                      width={25}
                     />
                     <Tooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '11px' }} />
+                    <Legend wrapperStyle={{ fontSize: '10px' }} />
                     <Area
                       type="monotone"
                       dataKey="normal"
@@ -317,25 +317,25 @@ const Analytics = () => {
                 </ResponsiveContainer>
               </div>
 
-              <div className="mt-4 md:mt-6 grid grid-cols-3 gap-2 md:gap-4">
-                <div className="text-center p-2 md:p-4 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800">
-                  <div className="text-base md:text-2xl font-bold text-emerald-700 dark:text-emerald-400">
+              <div className="mt-3 md:mt-6 grid grid-cols-3 gap-1.5 sm:gap-2 md:gap-4">
+                <div className="text-center p-1.5 sm:p-2 md:p-4 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800">
+                  <div className="text-sm sm:text-base md:text-2xl font-bold text-emerald-700 dark:text-emerald-400">
                     {(trafficTrends.reduce((sum, day) => sum + day.normal, 0) / trafficTrends.length).toFixed(0)}
                   </div>
-                  <div className="text-[10px] md:text-sm text-emerald-600 dark:text-emerald-500 mt-0.5 md:mt-1">Avg Normal</div>
+                  <div className="text-[9px] sm:text-[10px] md:text-sm text-emerald-600 dark:text-emerald-500 mt-0.5 md:mt-1">Avg Normal</div>
                 </div>
-                <div className="text-center p-2 md:p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
-                  <div className="text-base md:text-2xl font-bold text-red-700 dark:text-red-400">
+                <div className="text-center p-1.5 sm:p-2 md:p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+                  <div className="text-sm sm:text-base md:text-2xl font-bold text-red-700 dark:text-red-400">
                     {(trafficTrends.reduce((sum, day) => sum + day.attacks, 0) / trafficTrends.length).toFixed(0)}
                   </div>
-                  <div className="text-[10px] md:text-sm text-red-600 dark:text-red-500 mt-0.5 md:mt-1">Avg Attacks</div>
+                  <div className="text-[9px] sm:text-[10px] md:text-sm text-red-600 dark:text-red-500 mt-0.5 md:mt-1">Avg Attacks</div>
                 </div>
-                <div className="text-center p-2 md:p-4 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
-                  <div className="text-base md:text-2xl font-bold text-amber-700 dark:text-amber-400">
+                <div className="text-center p-1.5 sm:p-2 md:p-4 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
+                  <div className="text-sm sm:text-base md:text-2xl font-bold text-amber-700 dark:text-amber-400">
                     {((trafficTrends.reduce((sum, day) => sum + day.falsePositives, 0) /
                       trafficTrends.reduce((sum, day) => sum + day.normal, 0)) * 100).toFixed(1)}%
                   </div>
-                  <div className="text-[10px] md:text-sm text-amber-600 dark:text-amber-500 mt-0.5 md:mt-1">FPR</div>
+                  <div className="text-[9px] sm:text-[10px] md:text-sm text-amber-600 dark:text-amber-500 mt-0.5 md:mt-1">FPR</div>
                 </div>
               </div>
             </div>
@@ -346,51 +346,51 @@ const Analytics = () => {
         return (
           <>
             {/* Detection Performance */}
-            <div className="lg:col-span-2 bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-4 md:p-6 shadow-sm">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 md:mb-6">
+            <div className="lg:col-span-2 bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-2.5 sm:p-4 md:p-6 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 md:mb-6">
                 <div className="flex items-center gap-2 md:gap-3">
-                  <div className="p-1.5 md:p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20">
+                  <div className="p-1.5 rounded-lg bg-blue-50 dark:bg-blue-900/20">
                     <Target className="h-4 w-4 md:h-5 md:w-5 text-blue-600 dark:text-blue-400" />
                   </div>
-                  <h2 className="text-base md:text-xl font-bold text-gray-900 dark:text-white">Detection Performance</h2>
+                  <h2 className="text-sm sm:text-base md:text-xl font-bold text-gray-900 dark:text-white">Detection Performance</h2>
                 </div>
-                <span className="text-xs md:text-sm text-gray-500 dark:text-gray-400">Accuracy vs Time</span>
+                <span className="text-[10px] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400">Accuracy vs Time</span>
               </div>
 
-              <div className="h-64 md:h-80">
+              <div className="h-52 sm:h-64 md:h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={detectionPerformance}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" className="opacity-30 dark:opacity-10" />
                     <XAxis
                       dataKey="attack"
                       stroke="#6b7280"
-                      tick={{ fontSize: 10, fill: '#6b7280' }}
+                      tick={{ fontSize: 9, fill: '#6b7280' }}
                       angle={-30}
                       textAnchor="end"
-                      height={50}
+                      height={45}
                     />
                     <YAxis
                       yAxisId="left"
                       stroke="#6b7280"
-                      tick={{ fontSize: 10, fill: '#6b7280' }}
-                      width={30}
+                      tick={{ fontSize: 9, fill: '#6b7280' }}
+                      width={25}
                     />
                     <YAxis
                       yAxisId="right"
                       orientation="right"
                       stroke="#6b7280"
-                      tick={{ fontSize: 10, fill: '#6b7280' }}
-                      width={30}
+                      tick={{ fontSize: 9, fill: '#6b7280' }}
+                      width={25}
                     />
                     <Tooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '11px' }} />
+                    <Legend wrapperStyle={{ fontSize: '10px' }} />
                     <Bar
                       yAxisId="left"
                       dataKey="accuracy"
                       name="Accuracy %"
                       fill="#3b82f6"
                       radius={[4, 4, 0, 0]}
-                      barSize={20}
+                      barSize={15}
                     />
                     <Line
                       yAxisId="right"
@@ -399,7 +399,7 @@ const Analytics = () => {
                       name="Time (ms)"
                       stroke="#f59e0b"
                       strokeWidth={2}
-                      dot={{ r: 3 }}
+                      dot={{ r: 2.5 }}
                     />
                   </BarChart>
                 </ResponsiveContainer>
@@ -407,47 +407,47 @@ const Analytics = () => {
             </div>
 
             {/* Attack Severity */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-4 md:p-6 shadow-sm">
-              <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
-                <div className="p-1.5 md:p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20">
+            <div className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-2.5 sm:p-4 md:p-6 shadow-sm">
+              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-6">
+                <div className="p-1.5 rounded-lg bg-blue-50 dark:bg-blue-900/20">
                   <AlertTriangle className="h-4 w-4 md:h-5 md:w-5 text-blue-600 dark:text-blue-400" />
                 </div>
-                <h2 className="text-base md:text-xl font-bold text-gray-900 dark:text-white">Severity Distribution</h2>
+                <h2 className="text-sm sm:text-base md:text-xl font-bold text-gray-900 dark:text-white">Severity Distribution</h2>
               </div>
 
-              <div className="space-y-4 md:space-y-6">
+              <div className="space-y-3 sm:space-y-4 md:space-y-6">
                 {severityDistribution.map((severity, index) => (
                   <div key={index} className="space-y-1 md:space-y-2">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 md:gap-3">
+                      <div className="flex items-center gap-2">
                         <div
-                          className="w-2 h-2 md:w-3 md:h-3 rounded-full"
+                          className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full"
                           style={{ backgroundColor: severity.color }}
                         />
-                        <span className="text-xs md:text-sm font-medium text-gray-900 dark:text-gray-100">{severity.level}</span>
+                        <span className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-900 dark:text-gray-100">{severity.level}</span>
                       </div>
-                      <span className="text-xs md:text-sm font-bold text-gray-900 dark:text-white">{severity.count}</span>
+                      <span className="text-[10px] sm:text-xs md:text-sm font-bold text-gray-900 dark:text-white">{severity.count}</span>
                     </div>
-                    <div className="flex items-center gap-2 md:gap-3">
-                      <div className="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2 md:h-3 flex-1">
+                    <div className="flex items-center gap-2">
+                      <div className="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-1.5 sm:h-2 md:h-3 flex-1">
                         <div
-                          className="h-2 md:h-3 rounded-full"
+                          className="h-1.5 sm:h-2 md:h-3 rounded-full"
                           style={{
                             width: `${severity.percentage}%`,
                             backgroundColor: severity.color
                           }}
                         />
                       </div>
-                      <span className="text-xs md:text-sm font-medium text-gray-700 dark:text-gray-300">{severity.percentage}%</span>
+                      <span className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-700 dark:text-gray-300">{severity.percentage}%</span>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-gray-200 dark:border-gray-800">
+              <div className="mt-2.5 sm:mt-4 md:mt-6 pt-2.5 sm:pt-4 md:pt-6 border-t border-gray-200 dark:border-gray-800">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Total incidents</span>
-                  <span className="text-base md:text-lg font-bold text-gray-900 dark:text-white">
+                  <span className="text-[10px] sm:text-xs md:text-sm text-gray-600 dark:text-gray-400">Total incidents</span>
+                  <span className="text-sm sm:text-base md:text-lg font-bold text-gray-900 dark:text-white">
                     {severityDistribution.reduce((sum, s) => sum + s.count, 0)}
                   </span>
                 </div>
@@ -458,54 +458,54 @@ const Analytics = () => {
 
       case 'comparison':
         return (
-          <div className="lg:col-span-2 bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-4 md:p-6 shadow-sm">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 md:mb-6">
+          <div className="lg:col-span-2 bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-2.5 sm:p-4 md:p-6 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 md:mb-6">
               <div className="flex items-center gap-2 md:gap-3">
-                <div className="p-1.5 md:p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20">
+                <div className="p-1.5 rounded-lg bg-blue-50 dark:bg-blue-900/20">
                   <Layers className="h-4 w-4 md:h-5 md:w-5 text-blue-600 dark:text-blue-400" />
                 </div>
-                <h2 className="text-base md:text-xl font-bold text-gray-900 dark:text-white">Model Comparison</h2>
+                <h2 className="text-sm sm:text-base md:text-xl font-bold text-gray-900 dark:text-white">Model Comparison</h2>
               </div>
-              <span className="text-xs md:text-sm text-gray-500 dark:text-gray-400">
+              <span className="text-[10px] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400">
                 Params vs Accuracy
               </span>
             </div>
 
             {/* Mobile View - Cards */}
-            <div className="block lg:hidden space-y-3">
+            <div className="block lg:hidden space-y-2">
               {modelComparisonData.map((model, index) => (
                 <div
                   key={index}
-                  className={`p-3 rounded-lg border ${model.model === 'Hybrid (Ours)'
+                  className={`p-2 sm:p-3 rounded-lg border ${model.model === 'Hybrid (Ours)'
                       ? 'border-2 border-amber-300 dark:border-amber-600 bg-amber-50 dark:bg-amber-900/20'
                       : 'border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800'
                     }`}
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full" style={{ backgroundColor: model.color }} />
-                      <span className={`font-bold text-sm ${model.model === 'Hybrid (Ours)' ? 'text-amber-700 dark:text-amber-400' : 'text-gray-900 dark:text-gray-100'}`}>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: model.color }} />
+                      <span className={`font-bold text-xs sm:text-sm ${model.model === 'Hybrid (Ours)' ? 'text-amber-700 dark:text-amber-400' : 'text-gray-900 dark:text-gray-100'}`}>
                         {model.model}
                       </span>
                     </div>
                     {model.model === 'Hybrid (Ours)' && (
-                      <span className="px-2 py-0.5 text-xs font-medium bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-400 rounded-full">
+                      <span className="px-1.5 py-0.5 text-[9px] font-medium bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-400 rounded-full">
                         Best
                       </span>
                     )}
                   </div>
-                  <div className="grid grid-cols-3 gap-2 text-xs">
+                  <div className="grid grid-cols-3 gap-1.5 text-[10px] sm:text-xs">
                     <div>
                       <span className="text-gray-500">Acc:</span>
-                      <span className="ml-1 font-bold">{model.accuracy}%</span>
+                      <span className="ml-0.5 font-bold">{model.accuracy}%</span>
                     </div>
                     <div>
                       <span className="text-gray-500">Params:</span>
-                      <span className="ml-1 font-bold">{model.params}M</span>
+                      <span className="ml-0.5 font-bold">{model.params}M</span>
                     </div>
                     <div>
                       <span className="text-gray-500">Time:</span>
-                      <span className="ml-1 font-bold">{model.inference}ms</span>
+                      <span className="ml-0.5 font-bold">{model.inference}ms</span>
                     </div>
                   </div>
                 </div>
@@ -592,44 +592,44 @@ const Analytics = () => {
         return (
           <>
             {/* Detailed Metrics - Mobile Scrollable Table */}
-            <div className="lg:col-span-2 bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-4 md:p-6 shadow-sm">
-              <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
-                <div className="p-1.5 md:p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20">
+            <div className="lg:col-span-2 bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-2.5 sm:p-4 md:p-6 shadow-sm">
+              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-6">
+                <div className="p-1.5 rounded-lg bg-blue-50 dark:bg-blue-900/20">
                   <Database className="h-4 w-4 md:h-5 md:w-5 text-blue-600 dark:text-blue-400" />
                 </div>
-                <h2 className="text-base md:text-xl font-bold text-gray-900 dark:text-white">Model Performance</h2>
+                <h2 className="text-sm sm:text-base md:text-xl font-bold text-gray-900 dark:text-white">Model Performance</h2>
               </div>
 
-              <div className="overflow-x-auto -mx-4 md:mx-0 px-4 md:px-0">
-                <table className="w-full min-w-[600px] md:min-w-full">
+              <div className="overflow-x-auto -mx-2.5 md:mx-0 px-2.5 md:px-0">
+                <table className="w-full min-w-[500px] md:min-w-full">
                   <thead>
                     <tr className="border-b border-gray-200 dark:border-gray-800">
-                      <th className="text-left py-2 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold text-gray-900 dark:text-white">Model</th>
-                      <th className="text-left py-2 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold text-gray-900 dark:text-white">Acc</th>
-                      <th className="text-left py-2 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold text-gray-900 dark:text-white">F1</th>
-                      <th className="text-left py-2 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold text-gray-900 dark:text-white">Prec</th>
-                      <th className="text-left py-2 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold text-gray-900 dark:text-white">Rec</th>
-                      <th className="text-left py-2 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold text-gray-900 dark:text-white">Params</th>
-                      <th className="text-left py-2 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold text-gray-900 dark:text-white">Time</th>
+                      <th className="text-left py-1.5 sm:py-2 md:py-4 px-1.5 sm:px-2 md:px-4 text-[10px] sm:text-xs md:text-sm font-semibold text-gray-900 dark:text-white">Model</th>
+                      <th className="text-left py-1.5 sm:py-2 md:py-4 px-1.5 sm:px-2 md:px-4 text-[10px] sm:text-xs md:text-sm font-semibold text-gray-900 dark:text-white">Acc</th>
+                      <th className="text-left py-1.5 sm:py-2 md:py-4 px-1.5 sm:px-2 md:px-4 text-[10px] sm:text-xs md:text-sm font-semibold text-gray-900 dark:text-white">F1</th>
+                      <th className="text-left py-1.5 sm:py-2 md:py-4 px-1.5 sm:px-2 md:px-4 text-[10px] sm:text-xs md:text-sm font-semibold text-gray-900 dark:text-white">Prec</th>
+                      <th className="text-left py-1.5 sm:py-2 md:py-4 px-1.5 sm:px-2 md:px-4 text-[10px] sm:text-xs md:text-sm font-semibold text-gray-900 dark:text-white">Rec</th>
+                      <th className="text-left py-1.5 sm:py-2 md:py-4 px-1.5 sm:px-2 md:px-4 text-[10px] sm:text-xs md:text-sm font-semibold text-gray-900 dark:text-white">Params</th>
+                      <th className="text-left py-1.5 sm:py-2 md:py-4 px-1.5 sm:px-2 md:px-4 text-[10px] sm:text-xs md:text-sm font-semibold text-gray-900 dark:text-white">Time</th>
                     </tr>
                   </thead>
                   <tbody>
                     {modelComparisonData.map((model, index) => (
                       <tr key={index} className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                        <td className="py-2 md:py-4 px-2 md:px-4">
+                        <td className="py-1.5 sm:py-2 md:py-4 px-1.5 sm:px-2 md:px-4">
                           <div className="flex items-center gap-1 md:gap-2">
-                            <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full" style={{ backgroundColor: model.color }} />
-                            <span className={`text-xs md:text-sm font-medium ${model.model === 'Hybrid (Ours)' ? 'text-amber-600 dark:text-amber-400' : 'text-gray-900 dark:text-gray-100'}`}>
+                            <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: model.color }} />
+                            <span className={`text-[10px] sm:text-xs md:text-sm font-medium ${model.model === 'Hybrid (Ours)' ? 'text-amber-600 dark:text-amber-400' : 'text-gray-900 dark:text-gray-100'}`}>
                               {model.model === 'Hybrid (Ours)' ? 'Ours' : model.model}
                             </span>
                           </div>
                         </td>
-                        <td className="py-2 md:py-4 px-2 md:px-4 text-xs md:text-sm text-gray-900 dark:text-gray-100">{model.accuracy}%</td>
-                        <td className="py-2 md:py-4 px-2 md:px-4 text-xs md:text-sm text-gray-900 dark:text-gray-100">{model.f1}%</td>
-                        <td className="py-2 md:py-4 px-2 md:px-4 text-xs md:text-sm text-gray-900 dark:text-gray-100">{model.precision}%</td>
-                        <td className="py-2 md:py-4 px-2 md:px-4 text-xs md:text-sm text-gray-900 dark:text-gray-100">{model.recall}%</td>
-                        <td className="py-2 md:py-4 px-2 md:px-4 text-xs md:text-sm text-gray-900 dark:text-gray-100">{model.params}M</td>
-                        <td className="py-2 md:py-4 px-2 md:px-4 text-xs md:text-sm text-gray-900 dark:text-gray-100">{model.inference}ms</td>
+                        <td className="py-1.5 sm:py-2 md:py-4 px-1.5 sm:px-2 md:px-4 text-[10px] sm:text-xs md:text-sm text-gray-900 dark:text-gray-100">{model.accuracy}%</td>
+                        <td className="py-1.5 sm:py-2 md:py-4 px-1.5 sm:px-2 md:px-4 text-[10px] sm:text-xs md:text-sm text-gray-900 dark:text-gray-100">{model.f1}%</td>
+                        <td className="py-1.5 sm:py-2 md:py-4 px-1.5 sm:px-2 md:px-4 text-[10px] sm:text-xs md:text-sm text-gray-900 dark:text-gray-100">{model.precision}%</td>
+                        <td className="py-1.5 sm:py-2 md:py-4 px-1.5 sm:px-2 md:px-4 text-[10px] sm:text-xs md:text-sm text-gray-900 dark:text-gray-100">{model.recall}%</td>
+                        <td className="py-1.5 sm:py-2 md:py-4 px-1.5 sm:px-2 md:px-4 text-[10px] sm:text-xs md:text-sm text-gray-900 dark:text-gray-100">{model.params}M</td>
+                        <td className="py-1.5 sm:py-2 md:py-4 px-1.5 sm:px-2 md:px-4 text-[10px] sm:text-xs md:text-sm text-gray-900 dark:text-gray-100">{model.inference}ms</td>
                       </tr>
                     ))}
                   </tbody>
@@ -638,34 +638,34 @@ const Analytics = () => {
             </div>
 
             {/* Dataset Information */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-4 md:p-6 shadow-sm">
-              <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
-                <div className="p-1.5 md:p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20">
+            <div className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-2.5 sm:p-4 md:p-6 shadow-sm">
+              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-6">
+                <div className="p-1.5 rounded-lg bg-blue-50 dark:bg-blue-900/20">
                   <Database className="h-4 w-4 md:h-5 md:w-5 text-blue-600 dark:text-blue-400" />
                 </div>
-                <h2 className="text-base md:text-xl font-bold text-gray-900 dark:text-white">Dataset</h2>
+                <h2 className="text-sm sm:text-base md:text-xl font-bold text-gray-900 dark:text-white">Dataset</h2>
               </div>
 
-              <div className="space-y-3 md:space-y-4">
-                <div className="flex items-center justify-between p-2 md:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg md:rounded-xl">
-                  <span className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Dataset</span>
-                  <span className="text-xs md:text-sm font-semibold text-gray-900 dark:text-white">CICIoT2023</span>
+              <div className="space-y-2 md:space-y-4">
+                <div className="flex items-center justify-between p-1.5 sm:p-2 md:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg md:rounded-xl">
+                  <span className="text-[10px] sm:text-xs md:text-sm text-gray-600 dark:text-gray-400">Dataset</span>
+                  <span className="text-[10px] sm:text-xs md:text-sm font-semibold text-gray-900 dark:text-white">CICIoT2023</span>
                 </div>
-                <div className="flex items-center justify-between p-2 md:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg md:rounded-xl">
-                  <span className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Samples</span>
-                  <span className="text-xs md:text-sm font-semibold text-gray-900 dark:text-white">46.6M</span>
+                <div className="flex items-center justify-between p-1.5 sm:p-2 md:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg md:rounded-xl">
+                  <span className="text-[10px] sm:text-xs md:text-sm text-gray-600 dark:text-gray-400">Samples</span>
+                  <span className="text-[10px] sm:text-xs md:text-sm font-semibold text-gray-900 dark:text-white">46.6M</span>
                 </div>
-                <div className="flex items-center justify-between p-2 md:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg md:rounded-xl">
-                  <span className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Attacks</span>
-                  <span className="text-xs md:text-sm font-semibold text-gray-900 dark:text-white">14</span>
+                <div className="flex items-center justify-between p-1.5 sm:p-2 md:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg md:rounded-xl">
+                  <span className="text-[10px] sm:text-xs md:text-sm text-gray-600 dark:text-gray-400">Attacks</span>
+                  <span className="text-[10px] sm:text-xs md:text-sm font-semibold text-gray-900 dark:text-white">14</span>
                 </div>
-                <div className="flex items-center justify-between p-2 md:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg md:rounded-xl">
-                  <span className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Features</span>
-                  <span className="text-xs md:text-sm font-semibold text-gray-900 dark:text-white">46</span>
+                <div className="flex items-center justify-between p-1.5 sm:p-2 md:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg md:rounded-xl">
+                  <span className="text-[10px] sm:text-xs md:text-sm text-gray-600 dark:text-gray-400">Features</span>
+                  <span className="text-[10px] sm:text-xs md:text-sm font-semibold text-gray-900 dark:text-white">46</span>
                 </div>
-                <div className="flex items-center justify-between p-2 md:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg md:rounded-xl">
-                  <span className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Devices</span>
-                  <span className="text-xs md:text-sm font-semibold text-gray-900 dark:text-white">105</span>
+                <div className="flex items-center justify-between p-1.5 sm:p-2 md:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg md:rounded-xl">
+                  <span className="text-[10px] sm:text-xs md:text-sm text-gray-600 dark:text-gray-400">Devices</span>
+                  <span className="text-[10px] sm:text-xs md:text-sm font-semibold text-gray-900 dark:text-white">105</span>
                 </div>
               </div>
             </div>
@@ -679,25 +679,25 @@ const Analytics = () => {
 
   return (
     <div
-      className="space-y-4 md:space-y-8"
+      className="space-y-3 sm:space-y-4 md:space-y-8"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
       {/* Header - Mobile Optimized */}
-      <div className="relative overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-r from-blue-600 via-violet-600 to-purple-600 dark:from-blue-700 dark:via-violet-700 dark:to-purple-700 p-5 md:p-8 text-white">
-        <div className="absolute top-0 right-0 w-48 md:w-64 h-48 md:h-64 bg-white/10 rounded-full -translate-y-24 md:-translate-y-32 translate-x-24 md:translate-x-32" />
+      <div className="relative overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-r from-blue-600 via-violet-600 to-purple-600 dark:from-blue-700 dark:via-violet-700 dark:to-purple-700 p-3.5 sm:p-5 md:p-8 text-white">
+        <div className="absolute top-0 right-0 w-28 h-28 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-white/10 rounded-full -translate-y-12 sm:-translate-y-24 md:-translate-y-32 translate-x-12 sm:translate-x-24 md:translate-x-32" />
         <div className="relative z-10">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 md:gap-6">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 md:gap-6">
             <div>
-              <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
-                <div className="p-2 md:p-3 rounded-xl bg-white/20 backdrop-blur-sm">
-                  <BarChart3 className="h-6 w-6 md:h-8 md:w-8" />
+              <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-1.5 md:mb-4">
+                <div className="p-1.5 sm:p-2 md:p-3 rounded-xl bg-white/20 backdrop-blur-sm">
+                  <BarChart3 className="h-4.5 w-4.5 sm:h-6 sm:w-6 md:h-8 md:w-8" />
                 </div>
                 <div>
-                  <h1 className="text-2xl md:text-4xl font-bold">Analytics</h1>
-                  <p className="text-blue-100 dark:text-blue-200 text-xs md:text-sm mt-1 flex items-center gap-1 md:gap-2">
+                  <h1 className="text-lg sm:text-2xl md:text-4xl font-bold">Analytics</h1>
+                  <p className="text-blue-100 dark:text-blue-200 text-[10px] sm:text-xs md:text-sm mt-0.5 sm:mt-1 flex items-center gap-1 md:gap-2">
                     <Sparkles className="h-3 w-3 md:h-4 md:w-4" />
-                    <span className="hidden sm:inline">Hybrid CNN & ConvNeXt-Tiny Insights</span>
+                    <span>Hybrid CNN & ConvNeXt-Tiny Insights</span>
                   </p>
                 </div>
               </div>
@@ -708,7 +708,7 @@ const Analytics = () => {
               <select
                 value={timeRange}
                 onChange={(e) => setTimeRange(e.target.value)}
-                className="md:hidden bg-white/20 backdrop-blur-sm text-white text-xs rounded-lg px-3 py-2 border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
+                className="md:hidden bg-white/20 backdrop-blur-sm text-white text-[10px] rounded-md px-2 py-1 border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
               >
                 <option value="24h" className="text-gray-900">Last 24h</option>
                 <option value="7d" className="text-gray-900">Last 7d</option>
@@ -735,19 +735,19 @@ const Analytics = () => {
 
       {/* Tabs - Mobile Scrollable */}
       <div className="overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0">
-        <div className="flex space-x-1 md:space-x-2 p-1 bg-gray-100 dark:bg-gray-800 rounded-xl min-w-max md:min-w-full">
+        <div className="flex space-x-1 md:space-x-2 p-0.5 sm:p-1 bg-gray-100 dark:bg-gray-800 rounded-lg sm:rounded-xl min-w-max md:min-w-full">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex-1 py-2 md:py-3 px-3 md:px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-1 md:gap-2 text-xs md:text-sm whitespace-nowrap ${activeTab === tab.id
+                className={`flex-1 py-1.5 sm:py-2 md:py-3 px-2 sm:px-3 md:px-4 rounded-md sm:rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-1 md:gap-2 text-[10px] sm:text-xs md:text-sm whitespace-nowrap ${activeTab === tab.id
                     ? 'bg-white dark:bg-gray-700 text-blue-700 dark:text-blue-400 shadow-sm'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                   }`}
               >
-                <Icon className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                <Icon className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4" />
                 {tab.label}
               </button>
             );
@@ -756,7 +756,7 @@ const Analytics = () => {
       </div>
 
       {/* Main Charts Grid - Tab Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-8">
         {renderContent()}
       </div>
 

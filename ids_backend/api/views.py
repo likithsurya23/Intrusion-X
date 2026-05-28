@@ -39,7 +39,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
                 username_attempted=user.username,
                 ip_address=ip_address,
                 device_os=device_os,
-                status='Success'
+                status='success'
             )
             return Response(serializer.validated_data, status=status.HTTP_200_OK)
         except Exception as e:
@@ -48,7 +48,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
                 username_attempted=username_attempted,
                 ip_address=ip_address,
                 device_os=device_os,
-                status='Failed'
+                status='failed'
             )
             raise e
 

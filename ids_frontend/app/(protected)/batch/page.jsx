@@ -423,18 +423,18 @@ const BatchPrediction = () => {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-700 dark:via-purple-700 dark:to-pink-700 p-5 md:p-8 text-white shadow-xl"
+        className="relative overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-700 dark:via-purple-700 dark:to-pink-700 p-3.5 sm:p-5 md:p-8 text-white shadow-xl"
       >
         <div className="absolute top-0 right-0 w-48 md:w-64 h-48 md:h-64 bg-white/10 rounded-full -translate-y-24 md:-translate-y-32 translate-x-24 md:translate-x-32" />
         <div className="relative z-10">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3 md:gap-4">
-              <div className="p-2 md:p-3 rounded-xl bg-white/20 backdrop-blur-sm">
+              <div className="p-1.5 sm:p-2 md:p-3 rounded-xl bg-white/20 backdrop-blur-sm">
                 <Database className="h-6 w-6 md:h-8 md:w-8" />
               </div>
               <div>
-                <h1 className="text-xl md:text-3xl lg:text-4xl font-bold">Batch Analytics</h1>
-                  <p className="text-blue-100 dark:text-blue-200 text-xs md:text-sm mt-1 flex items-center gap-1 md:gap-2">
+                <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold">Batch Analytics</h1>
+                  <p className="text-blue-100 dark:text-blue-200 text-[10px] sm:text-xs md:text-sm mt-1 flex items-center gap-1 md:gap-2">
                     <Sparkles className="h-3 w-3 md:h-4 md:w-4" />
                     <span className="hidden sm:inline">Upload CSV for threat analysis</span>
                   </p>
@@ -474,23 +474,23 @@ const BatchPrediction = () => {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.1 }}
-        className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-4 md:p-8 shadow-sm"
+        className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-3 sm:p-4 md:p-8 shadow-sm"
       >
         <div
-          className="border-2 md:border-3 border-dashed border-gray-300 dark:border-gray-700 rounded-lg md:rounded-xl p-6 md:p-12 text-center hover:border-indigo-400 dark:hover:border-indigo-500 transition-colors bg-gray-50/50 dark:bg-gray-800/50 cursor-pointer"
+          className="border-2 md:border-3 border-dashed border-gray-300 dark:border-gray-700 rounded-lg md:rounded-xl p-4 sm:p-6 md:p-12 text-center hover:border-indigo-400 dark:hover:border-indigo-500 transition-colors bg-gray-50/50 dark:bg-gray-800/50 cursor-pointer"
           onDragOver={handleDragOver}
           onDrop={handleDrop}
           onClick={() => !loading && fileInputRef.current?.click()}
         >
           <div className="mb-4 md:mb-6">
-            <Upload className="mx-auto h-12 w-12 md:h-16 md:w-16 text-indigo-500 dark:text-indigo-400 mb-3 md:mb-4" />
-            <h3 className="text-lg md:text-2xl font-semibold mb-1 md:mb-2 text-gray-900 dark:text-white">
+            <Upload className="mx-auto h-8 w-8 sm:h-12 md:h-16 md:w-16 text-indigo-500 dark:text-indigo-400 mb-2.5 sm:mb-4" />
+            <h3 className="text-sm sm:text-lg md:text-2xl font-semibold mb-1 md:mb-2 text-gray-900 dark:text-white">
               {loading ? "Processing..." : "Upload CSV"}
             </h3>
             <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mb-4 md:mb-6">
               Drag & drop or click to browse
             </p>
-
+ 
             <button
               type="button"
               onClick={(e) => {
@@ -499,7 +499,7 @@ const BatchPrediction = () => {
                   fileInputRef.current?.click();
                 }
               }}
-              className="inline-flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-500 dark:to-purple-500 text-white rounded-lg cursor-pointer hover:opacity-90 transition-opacity shadow-md text-xs md:text-sm"
+              className="inline-flex items-center gap-1.5 md:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-3 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-500 dark:to-purple-500 text-white rounded-lg cursor-pointer hover:opacity-90 transition-opacity shadow-md text-[10px] sm:text-xs md:text-sm"
             >
               <FileText className="h-4 w-4 md:h-5 md:w-5" />
               Choose File
@@ -515,7 +515,7 @@ const BatchPrediction = () => {
           </div>
 
           {file && !loading && (
-            <div className="mt-4 md:mt-6 p-3 md:p-4 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg inline-block max-w-full">
+            <div className="mt-4 md:mt-6 p-2 sm:p-3 md:p-4 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg inline-block max-w-full">
               <div className="flex items-center gap-2 md:gap-3">
                 <FileText className="h-4 w-4 md:h-5 md:w-5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
                 <span className="font-medium text-xs md:text-sm text-gray-900 dark:text-indigo-300 truncate max-w-[150px] md:max-w-xs">
@@ -552,7 +552,7 @@ const BatchPrediction = () => {
           <div className="mt-3 md:mt-4 text-center">
             <button
               onClick={handleReset}
-              className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+              className="inline-flex items-center gap-1.5 md:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 text-xs md:text-sm text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
             >
               <RefreshCw className="h-3.5 w-3.5 md:h-4 md:w-4" />
               Upload different file
@@ -570,7 +570,7 @@ const BatchPrediction = () => {
             animate={{ opacity: 1, y: 0 }}
             className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4"
           >
-            <div className="bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 rounded-lg md:rounded-xl p-3 md:p-6 text-white shadow-lg">
+            <div className="bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 rounded-lg md:rounded-xl p-2.5 sm:p-4 md:p-6 text-white shadow-lg">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-blue-100 dark:text-blue-200 text-xs md:text-sm">Total</p>
@@ -582,7 +582,7 @@ const BatchPrediction = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-emerald-500 to-emerald-600 dark:from-emerald-600 dark:to-emerald-700 rounded-lg md:rounded-xl p-3 md:p-6 text-white shadow-lg">
+            <div className="bg-gradient-to-br from-emerald-500 to-emerald-600 dark:from-emerald-600 dark:to-emerald-700 rounded-lg md:rounded-xl p-2.5 sm:p-4 md:p-6 text-white shadow-lg">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-emerald-100 dark:text-emerald-200 text-xs md:text-sm">Normal</p>
@@ -594,7 +594,7 @@ const BatchPrediction = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-red-500 to-red-600 dark:from-red-600 dark:to-red-700 rounded-lg md:rounded-xl p-3 md:p-6 text-white shadow-lg">
+            <div className="bg-gradient-to-br from-red-500 to-red-600 dark:from-red-600 dark:to-red-700 rounded-lg md:rounded-xl p-2.5 sm:p-4 md:p-6 text-white shadow-lg">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-red-100 dark:text-red-200 text-xs md:text-sm">Attacks</p>
@@ -606,7 +606,7 @@ const BatchPrediction = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700 rounded-lg md:rounded-xl p-3 md:p-6 text-white shadow-lg">
+            <div className="bg-gradient-to-br from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700 rounded-lg md:rounded-xl p-2.5 sm:p-4 md:p-6 text-white shadow-lg">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-purple-100 dark:text-purple-200 text-xs md:text-sm">Rate</p>
@@ -621,7 +621,7 @@ const BatchPrediction = () => {
           </motion.div>
 
           {/* Charts Section with Collapse Toggle for Mobile */}
-          <div className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-4 md:p-6 shadow-sm">
+          <div className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-3 sm:p-4 md:p-6 shadow-sm">
             <div className="flex items-center justify-between mb-4 md:mb-6">
               <div className="flex items-center gap-2 md:gap-3">
                 <BarChart3 className="h-5 w-5 md:h-6 md:w-6 text-indigo-600 dark:text-indigo-400" />
@@ -638,11 +638,11 @@ const BatchPrediction = () => {
                 )}
               </button>
             </div>
-
+ 
             {(expandedSections.charts || isLargeScreen) && (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
                 {/* Attack Distribution */}
-                <div className="bg-white dark:bg-gray-900 rounded-lg md:rounded-xl border border-gray-200 dark:border-gray-800 p-3 md:p-4 shadow-sm">
+                <div className="bg-white dark:bg-gray-900 rounded-lg md:rounded-xl border border-gray-200 dark:border-gray-800 p-2.5 sm:p-3 md:p-4 shadow-sm">
                   <div className="flex items-center justify-between mb-3 md:mb-4">
                     <div className="flex items-center gap-2">
                       <BarChart3 className="h-4 w-4 md:h-5 md:w-5 text-indigo-600 dark:text-indigo-400" />
@@ -652,8 +652,8 @@ const BatchPrediction = () => {
                       {formatNumber(stats.attack_count)}
                     </span>
                   </div>
-
-                  <div className="h-48 md:h-64 lg:h-72">
+ 
+                  <div className="h-44 sm:h-48 md:h-64 lg:h-72">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={prepareAttackDistributionData().slice(0, 5)}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" className="opacity-30 dark:opacity-10" />
@@ -691,7 +691,7 @@ const BatchPrediction = () => {
                 </div>
 
                 {/* Traffic Overview */}
-                <div className="bg-white dark:bg-gray-900 rounded-lg md:rounded-xl border border-gray-200 dark:border-gray-800 p-3 md:p-4 shadow-sm">
+                <div className="bg-white dark:bg-gray-900 rounded-lg md:rounded-xl border border-gray-200 dark:border-gray-800 p-2.5 sm:p-3 md:p-4 shadow-sm">
                   <div className="flex items-center justify-between mb-3 md:mb-4">
                     <div className="flex items-center gap-2">
                       <PieChartIcon className="h-4 w-4 md:h-5 md:w-5 text-indigo-600 dark:text-indigo-400" />
@@ -702,7 +702,7 @@ const BatchPrediction = () => {
                     </span>
                   </div>
 
-                  <div className="h-48 md:h-64 lg:h-72 flex items-center justify-center">
+                  <div className="h-44 sm:h-48 md:h-64 lg:h-72 flex items-center justify-center">
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
                         <Pie
@@ -735,7 +735,7 @@ const BatchPrediction = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-4 md:p-6 shadow-sm"
+              className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-3 sm:p-4 md:p-6 shadow-sm"
             >
               <div className="flex items-center justify-between mb-4 md:mb-6">
                 <div className="flex items-center gap-2 md:gap-3">
@@ -753,18 +753,18 @@ const BatchPrediction = () => {
                   )}
                 </button>
               </div>
-
+ 
               {(expandedSections.attacks || isLargeScreen) && (
                 <div className="overflow-x-auto -mx-4 md:mx-0 px-4 md:px-0">
                   <div className="min-w-[600px] md:min-w-full">
                     <table className="w-full">
                       <thead>
                         <tr className="border-b border-gray-200 dark:border-gray-800">
-                          <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Attack Type</th>
-                          <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Count</th>
-                          <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">%</th>
-                          <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Distribution</th>
-                          <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Severity</th>
+                          <th className="text-left py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Attack Type</th>
+                          <th className="text-left py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Count</th>
+                          <th className="text-left py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">%</th>
+                          <th className="text-left py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Distribution</th>
+                          <th className="text-left py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Severity</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -773,10 +773,10 @@ const BatchPrediction = () => {
                           const color = getAttackColor(attack.attack);
                           const percentage = parseFloat(attack.percentage);
                           const severity = percentage > 30 ? "High" : percentage > 10 ? "Medium" : "Low";
-
+ 
                           return (
                             <tr key={index} className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                              <td className="py-2 md:py-3 px-2 md:px-4">
+                              <td className="py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4">
                                 <div className="flex items-center gap-2">
                                   <div className="p-1 md:p-1.5 rounded-md" style={{ backgroundColor: color + '20' }}>
                                     <Icon className="h-3 w-3 md:h-4 md:w-4" style={{ color }} />
@@ -838,7 +838,7 @@ const BatchPrediction = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
-          className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-4 md:p-6 shadow-sm"
+          className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 p-3 sm:p-4 md:p-6 shadow-sm"
         >
           <div className="flex items-center justify-between mb-4 md:mb-6">
             <div className="flex items-center gap-2 md:gap-3">
@@ -865,31 +865,31 @@ const BatchPrediction = () => {
               </button>
             </div>
           </div>
-
+ 
           {(expandedSections.history || isLargeScreen) && (
             <div className="overflow-x-auto -mx-4 md:mx-0 px-4 md:px-0">
               <div className="min-w-[650px] md:min-w-full">
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-gray-200 dark:border-gray-800">
-                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Date</th>
-                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">File</th>
-                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Total</th>
-                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Normal</th>
-                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Attacks</th>
-                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Rate</th>
+                      <th className="text-left py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Date</th>
+                      <th className="text-left py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">File</th>
+                      <th className="text-left py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Total</th>
+                      <th className="text-left py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Normal</th>
+                      <th className="text-left py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Attacks</th>
+                      <th className="text-left py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">Rate</th>
                     </tr>
                   </thead>
                   <tbody>
                     {predictionHistory.slice(0, 5).map((entry, index) => (
                       <tr key={index} className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                        <td className="py-2 md:py-3 px-2 md:px-4">
+                        <td className="py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4">
                           <div>
                             <div className="text-xs md:text-sm font-medium text-gray-900 dark:text-white">{entry.date}</div>
                             <div className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400">{entry.time}</div>
                           </div>
                         </td>
-                        <td className="py-2 md:py-3 px-2 md:px-4">
+                        <td className="py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4">
                           <div className="flex items-center gap-1.5 md:gap-2">
                             <FileText className="h-3 w-3 md:h-4 md:w-4 text-gray-400 dark:text-gray-500 flex-shrink-0" />
                             <span className="text-xs md:text-sm text-gray-900 dark:text-gray-300 truncate max-w-[80px] md:max-w-[120px]" title={entry.filename}>
@@ -897,16 +897,16 @@ const BatchPrediction = () => {
                             </span>
                           </div>
                         </td>
-                        <td className="py-2 md:py-3 px-2 md:px-4 text-xs md:text-sm font-semibold text-gray-900 dark:text-white">
+                        <td className="py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4 text-xs md:text-sm font-semibold text-gray-900 dark:text-white">
                           {formatNumber(entry.total)}
                         </td>
-                        <td className="py-2 md:py-3 px-2 md:px-4 text-xs md:text-sm text-emerald-600 dark:text-emerald-400 font-semibold">
+                        <td className="py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4 text-xs md:text-sm text-emerald-600 dark:text-emerald-400 font-semibold">
                           {formatNumber(entry.normal)}
                         </td>
-                        <td className="py-2 md:py-3 px-2 md:px-4 text-xs md:text-sm text-red-600 dark:text-red-400 font-semibold">
+                        <td className="py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4 text-xs md:text-sm text-red-600 dark:text-red-400 font-semibold">
                           {formatNumber(entry.attacks)}
                         </td>
-                        <td className="py-2 md:py-3 px-2 md:px-4">
+                        <td className="py-1.5 sm:py-2 md:py-3 px-1.5 sm:px-2 md:px-4">
                           <div className="flex items-center gap-1.5 md:gap-2">
                             <span className={`text-xs md:text-sm font-bold ${entry.detectionRate > 30
                               ? 'text-red-600 dark:text-red-400'

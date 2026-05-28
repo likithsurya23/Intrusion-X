@@ -72,6 +72,9 @@ const SinglePrediction = () => {
       const result = await predictionService.predictSingle(featureArray);
       setPrediction(result);
       setExpandedResults(true);
+      if (window.innerWidth < 1024) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     } catch (err) {
       setError(err.message || 'Prediction failed. Please try again.');
     } finally {
@@ -201,28 +204,28 @@ const SinglePrediction = () => {
   const isFeatureCountValid = featureCount === 46;
 
   return (
-    <div className="space-y-4 md:space-y-6 lg:space-y-8">
+    <div className="space-y-3 sm:space-y-4 md:space-y-8">
       {/* Header - Mobile Optimized */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-r from-blue-600 via-violet-600 to-purple-600 dark:from-blue-700 dark:via-violet-700 dark:to-purple-700 p-5 md:p-8 text-white shadow-xl"
+        className="relative overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-r from-blue-600 via-violet-600 to-purple-600 dark:from-blue-700 dark:via-violet-700 dark:to-purple-700 p-3.5 sm:p-5 md:p-8 text-white shadow-xl"
       >
-        <div className="absolute top-0 right-0 w-48 md:w-64 h-48 md:h-64 bg-white/10 rounded-full -translate-y-24 md:-translate-y-32 translate-x-24 md:translate-x-32" />
+        <div className="absolute top-0 right-0 w-28 h-28 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-white/10 rounded-full -translate-y-12 sm:-translate-y-24 md:-translate-y-32 translate-x-12 sm:translate-x-24 md:translate-x-32" />
         <div className="absolute bottom-0 left-0 w-64 md:w-96 h-64 md:h-96 bg-white/5 rounded-full translate-y-32 md:translate-y-48 -translate-x-32 md:-translate-x-48" />
 
         <div className="relative z-10">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 md:gap-6">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 md:gap-6">
             <div>
-              <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
-                <div className="p-2 md:p-3 rounded-xl bg-white/20 backdrop-blur-sm">
-                  <Brain className="h-6 w-6 md:h-8 md:w-8" />
+              <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-1.5 md:mb-4">
+                <div className="p-1.5 sm:p-2 md:p-3 rounded-xl bg-white/20 backdrop-blur-sm">
+                  <Brain className="h-4.5 w-4.5 sm:h-6 sm:w-6 md:h-8 md:w-8" />
                 </div>
                 <div>
-                  <h1 className="text-xl md:text-3xl lg:text-4xl font-bold">Single Prediction</h1>
-                  <p className="text-blue-100 dark:text-blue-200 text-xs md:text-sm mt-1 flex items-center gap-1 md:gap-2">
+                  <h1 className="text-lg sm:text-2xl md:text-4xl font-bold">Single Prediction</h1>
+                  <p className="text-blue-100 dark:text-blue-200 text-[10px] sm:text-xs md:text-sm mt-0.5 sm:mt-1 flex items-center gap-1 md:gap-2">
                     <Sparkles className="h-3 w-3 md:h-4 md:w-4" />
-                    <span className="hidden sm:inline">46-Feature Analysis</span>
+                    <span>46-Feature Analysis</span>
                   </p>
                 </div>
               </div>
@@ -245,29 +248,29 @@ const SinglePrediction = () => {
         )}
       </AnimatePresence>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-6 lg:gap-8">
         {/* Input Section - Mobile Optimized */}
-        <div className="lg:col-span-2 space-y-4 md:space-y-6">
+        <div className={`lg:col-span-2 space-y-3 md:space-y-6 ${prediction ? 'order-2 lg:order-1' : 'order-1'}`}>
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
             className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden"
           >
-            <div className="border-b border-gray-200 dark:border-gray-800 bg-gradient-to-r from-gray-50 to-white dark:from-gray-800/50 dark:to-gray-900 p-4 md:p-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 md:gap-4">
+            <div className="border-b border-gray-200 dark:border-gray-800 bg-gradient-to-r from-gray-50 to-white dark:from-gray-800/50 dark:to-gray-900 p-2.5 sm:p-4 md:p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4">
                 <div>
-                  <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2 md:gap-3">
-                    <FileText className="h-5 w-5 md:h-6 md:w-6 text-blue-600 dark:text-blue-400" />
+                  <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2 md:gap-3">
+                    <FileText className="h-4.5 w-4.5 sm:h-5 sm:w-5 md:h-6 md:w-6 text-blue-600 dark:text-blue-400" />
                     Input Features
                   </h2>
-                  <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mt-1 md:mt-2">
+                  <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 dark:text-gray-400 mt-0.5 sm:mt-2">
                     Enter 46 normalized values, comma-separated
                   </p>
                 </div>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className={`px-3 md:px-4 py-1.5 md:py-2 rounded-full font-semibold text-xs md:text-sm ${isFeatureCountValid
+                  className={`px-2.5 py-1 sm:px-4 sm:py-2 rounded-full font-semibold text-[10px] sm:text-sm ${isFeatureCountValid
                     ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
                     : featureCount > 46
                       ? 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 border border-red-200 dark:border-red-800'
@@ -279,14 +282,14 @@ const SinglePrediction = () => {
               </div>
             </div>
 
-            <div className="p-4 md:p-6 space-y-4 md:space-y-6">
-              <div className="space-y-3 md:space-y-4">
+            <div className="p-2.5 sm:p-4 md:p-6 space-y-3 sm:space-y-4 md:space-y-6">
+              <div className="space-y-2 sm:space-y-3 md:space-y-4">
                 <div className="flex items-center justify-between">
-                  <label className="block text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  <label className="block text-[10px] sm:text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">
                     Feature Values
                   </label>
                   {featureCount > 0 && (
-                    <span className={`text-xs md:text-sm px-2 md:px-3 py-1 rounded-full ${isFeatureCountValid
+                    <span className={`text-[10px] sm:text-xs md:text-sm px-2 py-0.5 sm:px-3 sm:py-1 rounded-full ${isFeatureCountValid
                       ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800'
                       : 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800'
                       }`}>
@@ -330,10 +333,10 @@ const SinglePrediction = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="flex items-start gap-2 md:gap-3 p-3 md:p-4 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg md:rounded-xl border border-blue-100 dark:border-blue-800/50"
+                  className="flex items-start gap-2 md:gap-3 p-2.5 sm:p-4 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg md:rounded-xl border border-blue-100 dark:border-blue-800/50"
                 >
                   <Info className="h-4 w-4 md:h-5 md:w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
-                  <div className="text-xs md:text-sm text-gray-700 dark:text-gray-300">
+                  <div className="text-[10px] sm:text-xs md:text-sm text-gray-700 dark:text-gray-300">
                     <p className="font-medium mb-1 md:mb-2 text-blue-800 dark:text-blue-300">Requirements:</p>
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 ml-2">
                       <li className="flex items-center gap-2">
@@ -441,12 +444,12 @@ const SinglePrediction = () => {
                       transition={{ delay: 0.1 * idx }}
                       className="relative group"
                     >
-                      <div className="text-center p-2 md:p-4 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-lg md:rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300">
+                      <div className="text-center p-2 sm:p-3 md:p-4 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-lg md:rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300">
                         <div className={`inline-flex p-1.5 md:p-2 rounded-lg bg-gradient-to-r ${stat.color} mb-1 md:mb-2`}>
                           <stat.icon className="h-3 w-3 md:h-5 md:w-5 text-white" />
                         </div>
-                        <div className="text-sm md:text-xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
-                        <div className="text-[10px] md:text-xs text-gray-600 dark:text-gray-400">{stat.label}</div>
+                        <div className="text-xs sm:text-sm md:text-xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
+                        <div className="text-[9px] sm:text-[10px] md:text-xs text-gray-600 dark:text-gray-400">{stat.label}</div>
                       </div>
                     </motion.div>
                   ))}
@@ -461,7 +464,7 @@ const SinglePrediction = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-gray-800/50 dark:to-gray-900 rounded-xl md:rounded-2xl border border-blue-100 dark:border-gray-700 p-4 md:p-6"
+              className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-gray-800/50 dark:to-gray-900 rounded-xl md:rounded-2xl border border-blue-100 dark:border-gray-700 p-3 sm:p-4 md:p-6"
             >
               <h3 className="font-bold text-gray-900 dark:text-white mb-3 md:mb-4 flex items-center gap-2 md:gap-3 text-base md:text-lg">
                 <div className="p-1.5 md:p-2 rounded-lg bg-blue-500/20 dark:bg-blue-500/30">
@@ -480,13 +483,13 @@ const SinglePrediction = () => {
                   <div className="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center text-white text-xs md:text-sm font-bold">
                     2
                   </div>
-                  <span className="text-xs md:text-sm text-gray-700 dark:text-gray-300">Ensure count shows "46/46 features" in green</span>
+                  <span className="text-xs md:text-sm text-gray-700 dark:text-gray-300">Ensure count shows &quot;46/46 features&quot; in green</span>
                 </li>
                 <li className="flex items-start gap-2 md:gap-3">
                   <div className="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center text-white text-xs md:text-sm font-bold">
                     3
                   </div>
-                  <span className="text-xs md:text-sm text-gray-700 dark:text-gray-300">Click "Predict" to analyze the sample</span>
+                  <span className="text-xs md:text-sm text-gray-700 dark:text-gray-300">Click &quot;Predict&quot; to analyze the sample</span>
                 </li>
               </ul>
             </motion.div>
@@ -495,7 +498,7 @@ const SinglePrediction = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-gray-800/50 dark:to-gray-900 rounded-xl md:rounded-2xl border border-violet-100 dark:border-gray-700 p-4 md:p-6"
+              className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-gray-800/50 dark:to-gray-900 rounded-xl md:rounded-2xl border border-violet-100 dark:border-gray-700 p-3 sm:p-4 md:p-6"
             >
               <h3 className="font-bold text-gray-900 dark:text-white mb-3 md:mb-4 flex items-center gap-2 md:gap-3 text-base md:text-lg">
                 <div className="p-1.5 md:p-2 rounded-lg bg-violet-500/20 dark:bg-violet-500/30">
@@ -522,12 +525,12 @@ const SinglePrediction = () => {
         </div>
 
         {/* Results Section - Mobile Optimized */}
-        <div className="space-y-4 md:space-y-6">
+        <div className={`space-y-4 md:space-y-6 ${prediction ? 'order-1 lg:order-2' : 'order-2'}`}>
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden sticky top-6"
+            className="bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden lg:sticky lg:top-6"
           >
             <div className="border-b border-gray-200 dark:border-gray-800 bg-gradient-to-r from-gray-50 to-white dark:from-gray-800/50 dark:to-gray-900 p-4 md:p-6">
               <div className="flex items-center justify-between">
@@ -552,7 +555,7 @@ const SinglePrediction = () => {
               </div>
             </div>
 
-            <div className="p-4 md:p-6">
+            <div className="p-3 sm:p-4 md:p-6">
               {prediction ? (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -567,19 +570,19 @@ const SinglePrediction = () => {
                     className="text-center"
                   >
                     <div className="inline-flex flex-col items-center">
-                      <div className={`p-3 md:p-4 rounded-xl md:rounded-2xl ${getAttackSeverity(prediction.prediction).bg} border ${getAttackSeverity(prediction.prediction).border} mb-3 md:mb-4`}>
+                      <div className={`p-2.5 sm:p-4 rounded-lg md:rounded-2xl ${getAttackSeverity(prediction.prediction).bg} border ${getAttackSeverity(prediction.prediction).border} mb-2.5 md:mb-4`}>
                         {React.createElement(getAttackSeverity(prediction.prediction).icon, {
-                          className: `h-8 w-8 md:h-12 md:w-12 ${getAttackSeverity(prediction.prediction).color.replace('bg-', 'text-')}`
+                          className: `h-6 w-6 sm:h-8 md:h-12 ${getAttackSeverity(prediction.prediction).color.replace('bg-', 'text-')}`
                         })}
                       </div>
                       <div>
                         <p className="text-[10px] md:text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Classification</p>
-                        <p className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2 md:mb-3 px-2">
+                        <p className="text-lg sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2 md:mb-3 px-2">
                           {prediction.prediction.length > 20 ? `${prediction.prediction.substring(0, 20)}...` : prediction.prediction}
                         </p>
                       </div>
-                      <div className={`inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 rounded-full ${getAttackSeverity(prediction.prediction).bg} border ${getAttackSeverity(prediction.prediction).border}`}>
-                        <span className={`text-xs md:text-sm font-medium ${getAttackSeverity(prediction.prediction).text}`}>
+                      <div className={`inline-flex items-center px-2.5 sm:px-4 py-1 sm:py-2 rounded-full ${getAttackSeverity(prediction.prediction).bg} border ${getAttackSeverity(prediction.prediction).border}`}>
+                        <span className={`text-[10px] sm:text-xs md:text-sm font-medium ${getAttackSeverity(prediction.prediction).text}`}>
                           Severity: <span className="font-bold">{getAttackSeverity(prediction.prediction).level}</span>
                         </span>
                       </div>
@@ -608,7 +611,7 @@ const SinglePrediction = () => {
 
                         <div className="space-y-2 md:space-y-3">
                           <div className="flex items-end justify-between">
-                            <span className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+                            <span className="text-lg sm:text-2xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
                               {(prediction.confidence * 100).toFixed(1)}%
                             </span>
                             <span className="text-[10px] md:text-sm text-gray-500 dark:text-gray-400">
@@ -618,7 +621,7 @@ const SinglePrediction = () => {
                           </div>
 
                           <div className="relative pt-1">
-                            <div className="overflow-hidden h-2 md:h-3 text-xs flex rounded-full bg-gray-200 dark:bg-gray-800">
+                            <div className="overflow-hidden h-1.5 md:h-3 text-xs flex rounded-full bg-gray-200 dark:bg-gray-800">
                               <motion.div
                                 initial={{ width: 0 }}
                                 animate={{ width: `${prediction.confidence * 100}%` }}
@@ -635,13 +638,13 @@ const SinglePrediction = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
-                        className="pt-4 md:pt-6 border-t border-gray-200 dark:border-gray-800 space-y-3 md:space-y-4"
+                        className="pt-3 md:pt-6 border-t border-gray-200 dark:border-gray-800 space-y-2 md:space-y-4"
                       >
                         <h4 className="font-semibold text-gray-900 dark:text-white flex items-center gap-1 md:gap-2 text-sm md:text-lg">
                           <Shield className="h-4 w-4 md:h-5 md:w-5 text-blue-600 dark:text-blue-400" />
                           Assessment
                         </h4>
-                        <div className={`p-3 md:p-4 rounded-lg md:rounded-xl ${prediction.prediction === 'Normal'
+                        <div className={`p-2.5 sm:p-4 rounded-lg ${prediction.prediction === 'Normal'
                           ? 'bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800'
                           : 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800'}`}
                         >
@@ -654,14 +657,14 @@ const SinglePrediction = () => {
                               : '⚠️ Threat detected - Action required'}
                           </p>
                         </div>
-
+ 
                         {/* Recommendations */}
                         {prediction.prediction !== 'Normal' && (
                           <motion.div
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             transition={{ delay: 0.4 }}
-                            className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 rounded-lg md:rounded-xl p-3 md:p-5 border border-orange-200 dark:border-orange-800/50"
+                            className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 rounded-lg p-2.5 sm:p-4 border border-orange-200 dark:border-orange-800/50"
                           >
                             <h5 className="font-semibold text-orange-800 dark:text-orange-400 mb-2 md:mb-3 flex items-center gap-1 md:gap-2 text-xs md:text-sm">
                               <AlertTriangle className="h-3 w-3 md:h-4 md:w-4" />
@@ -690,24 +693,24 @@ const SinglePrediction = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 }}
-                        className="pt-4 md:pt-6 border-t border-gray-200 dark:border-gray-800"
+                        className="pt-3 md:pt-6 border-t border-gray-200 dark:border-gray-800"
                       >
                         <h4 className="font-semibold text-gray-900 dark:text-white mb-2 md:mb-3 flex items-center gap-1 md:gap-2 text-xs md:text-sm">
                           <Network className="h-3 w-3 md:h-4 md:w-4 text-blue-600 dark:text-blue-400" />
                           Summary
                         </h4>
                         <div className="grid grid-cols-2 gap-2 md:gap-3">
-                          <div className="bg-gray-50 dark:bg-gray-800 p-2 md:p-3 rounded-lg">
+                          <div className="bg-gray-50 dark:bg-gray-800 p-1.5 sm:p-2.5 rounded-lg">
                             <div className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400">Features</div>
                             <div className="font-bold text-xs md:text-sm text-gray-900 dark:text-white">46 values</div>
                           </div>
-                          <div className="bg-gray-50 dark:bg-gray-800 p-2 md:p-3 rounded-lg">
+                          <div className="bg-gray-50 dark:bg-gray-800 p-1.5 sm:p-2.5 rounded-lg">
                             <div className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400">Confidence</div>
                             <div className="font-bold text-xs md:text-sm text-gray-900 dark:text-white">
                               {(prediction.confidence * 100).toFixed(1)}%
                             </div>
                           </div>
-                          <div className="bg-gray-50 dark:bg-gray-800 p-2 md:p-3 rounded-lg col-span-2">
+                          <div className="bg-gray-50 dark:bg-gray-800 p-1.5 sm:p-2.5 rounded-lg col-span-2">
                             <div className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400">Time</div>
                             <div className="font-mono text-[10px] md:text-xs text-gray-900 dark:text-white">
                               {new Date().toLocaleTimeString('en-US', {

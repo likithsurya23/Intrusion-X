@@ -8,8 +8,8 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function AdminLogin() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('likithsurya555@gmail.com');
+  const [password, setPassword] = useState('Admin@123');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
@@ -41,7 +41,7 @@ export default function AdminLogin() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-[90%] sm:max-w-md space-y-5 sm:space-y-6 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl p-5 sm:p-6 md:p-8 rounded-2xl border border-red-200 dark:border-red-900/50 shadow-xl dark:shadow-2xl relative z-10 transition-colors duration-300"
+        className="w-full max-w-[20rem] sm:max-w-md space-y-4 sm:space-y-6 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-red-200 dark:border-red-900/50 shadow-xl dark:shadow-2xl relative z-10 transition-colors duration-300"
       >
         {/* Header Section */}
         <div className="text-center space-y-2 sm:space-y-3">
@@ -49,14 +49,14 @@ export default function AdminLogin() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-            className="mx-auto h-14 w-14 sm:h-16 sm:w-16 bg-gradient-to-br from-red-600 to-orange-600 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg"
+            className="mx-auto h-10 w-10 sm:h-14 sm:w-14 bg-gradient-to-br from-red-600 to-orange-600 rounded-xl flex items-center justify-center shadow-lg"
           >
-            <Shield className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
+            <Shield className="h-5 w-5 sm:h-7 sm:w-7 text-white" />
           </motion.div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white transition-colors">
+          <h2 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white transition-colors">
             Administrator Portal
           </h2>
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 transition-colors">
+          <p className="text-[10px] sm:text-sm text-gray-500 dark:text-gray-400 transition-colors">
             Authorized Personnel Only
           </p>
         </div>
@@ -67,28 +67,28 @@ export default function AdminLogin() {
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-3 sm:p-4 rounded-md transition-colors"
+              className="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-2 sm:p-4 rounded-md transition-colors"
             >
-              <p className="text-xs sm:text-sm text-red-600 dark:text-red-400 break-words">{error}</p>
+              <p className="text-[10px] sm:text-xs text-red-600 dark:text-red-400 break-words">{error}</p>
             </motion.div>
           )}
           
           <div className="space-y-3 sm:space-y-4">
             {/* Email Field */}
             <div>
-              <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2 transition-colors">
+              <label className="block text-[10px] sm:text-xs font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2 transition-colors">
                 Admin Email
               </label>
               <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400 dark:text-gray-500 group-focus-within:text-red-500 dark:group-focus-within:text-red-400 transition-colors" />
+                <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
+                  <User className="h-3.5 w-3.5 sm:h-5 sm:w-5 text-gray-400 dark:text-gray-500 group-focus-within:text-red-500 dark:group-focus-within:text-red-400 transition-colors" />
                 </div>
                 <input
                   type="text"
                   required
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="pl-10 pr-3 py-2.5 sm:py-3 w-full bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all text-gray-900 dark:text-white outline-none text-sm sm:text-base placeholder-gray-400 dark:placeholder-gray-500"
+                  className="pl-8 sm:pl-10 pr-3 py-1.5 sm:py-3 w-full bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all text-gray-900 dark:text-white outline-none text-xs sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
                   placeholder="Admin Email Address"
                   autoComplete="email"
                 />
@@ -97,19 +97,19 @@ export default function AdminLogin() {
 
             {/* Password Field */}
             <div>
-              <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2 transition-colors">
+              <label className="block text-[10px] sm:text-xs font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2 transition-colors">
                 Password
               </label>
               <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400 dark:text-gray-500 group-focus-within:text-red-500 dark:group-focus-within:text-red-400 transition-colors" />
+                <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
+                  <Lock className="h-3.5 w-3.5 sm:h-5 sm:w-5 text-gray-400 dark:text-gray-500 group-focus-within:text-red-500 dark:group-focus-within:text-red-400 transition-colors" />
                 </div>
                 <input
                   type="password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10 pr-3 py-2.5 sm:py-3 w-full bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all text-gray-900 dark:text-white outline-none text-sm sm:text-base placeholder-gray-400 dark:placeholder-gray-500"
+                  className="pl-8 sm:pl-10 pr-3 py-1.5 sm:py-3 w-full bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all text-gray-900 dark:text-white outline-none text-xs sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
                   placeholder="••••••••"
                   autoComplete="current-password"
                 />
@@ -123,12 +123,12 @@ export default function AdminLogin() {
             whileTap={{ scale: isLoading ? 1 : 0.98 }}
             type="submit"
             disabled={isLoading}
-            className="group relative w-full flex justify-center items-center gap-2 py-2.5 sm:py-3 px-4 border border-transparent text-sm sm:text-base font-bold rounded-lg text-white bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 shadow-md disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300"
+            className="group relative w-full flex justify-center items-center gap-2 py-2 sm:py-2.5 px-3 border border-transparent text-xs sm:text-sm font-bold rounded-lg text-white bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 shadow-md disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300"
           >
-            <LogIn className="h-4 w-4 sm:h-5 sm:w-5" />
+            <LogIn className="h-3.5 w-3.5 sm:h-5 sm:w-5" />
             {isLoading ? 'Authenticating...' : 'Sign In as Admin'}
             {!isLoading && (
-              <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+              <ArrowRight className="h-3.5 w-3.5 sm:h-5 sm:w-5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
             )}
           </motion.button>
         </form>
@@ -139,20 +139,17 @@ export default function AdminLogin() {
             <motion.div
               whileHover={{ x: 5 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center gap-3 px-4 py-2.5 sm:py-3 rounded-lg bg-gray-100 dark:bg-gray-800/50 hover:bg-gray-200 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-red-500/50 transition-all duration-300 group cursor-pointer"
+              className="flex items-center gap-2 sm:gap-3 px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-gray-100 dark:bg-gray-800/50 hover:bg-gray-200 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-red-500/50 transition-all duration-300 group cursor-pointer"
             >
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-red-600/20 to-orange-600/20 group-hover:from-red-600/30 group-hover:to-orange-600/30 transition-colors">
-                <ChevronLeft className="h-4 w-4 text-red-400 group-hover:text-red-300 transition-colors" />
+              <div className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-red-600/20 to-orange-600/20 group-hover:from-red-600/30 group-hover:to-orange-600/30 transition-colors">
+                <ChevronLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-red-400 group-hover:text-red-300 transition-colors" />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
-                  Return to User Portal
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
-                  Switch to standard user account
+                <p className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+                  User Access
                 </p>
               </div>
-              <ArrowRight className="h-4 w-4 text-gray-500 group-hover:text-red-400 group-hover:translate-x-1 transition-all duration-300" />
+              <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gray-500 group-hover:text-red-400 group-hover:translate-x-1 transition-all duration-300" />
             </motion.div>
           </Link>
         </div>

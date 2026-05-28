@@ -3,11 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Shield, MessageSquare, LogIn, LayoutDashboard, Menu, X } from 'lucide-react';
+import { Shield, MessageSquare, LogIn, LayoutDashboard, Menu, X, LogOut } from 'lucide-react';
 import { useAuth } from '@/lib/auth/auth';
 
 export default function AdminLayout({ children }) {
-  const { isAdmin, isAuthenticated, loading } = useAuth();
+  const { isAdmin, isAuthenticated, loading, logout } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -26,9 +26,9 @@ export default function AdminLayout({ children }) {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row gap-6 min-h-[calc(100vh-8rem)] relative">
+    <div className="flex flex-col md:flex-row gap-6 min-h-screen md:min-h-0 relative w-full px-4 pb-4 md:p-6 lg:p-8 pt-0 md:pt-6">
       {/* Mobile Header with Hamburger */}
-      <div className="md:hidden flex items-center justify-between bg-white dark:bg-gray-800 p-4 -mx-4 border-b border-gray-200 dark:border-gray-700 sticky top-16 z-20">
+      <div className="md:hidden flex items-center justify-between bg-white dark:bg-gray-800 p-4 -mx-4 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-20">
         <div className="flex items-center gap-2">
           <Shield className="h-5 w-5 text-indigo-500" />
           <span className="font-bold text-gray-900 dark:text-white">Admin Panel</span>
@@ -70,18 +70,27 @@ export default function AdminLayout({ children }) {
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsSidebarOpen(false)}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                className={`flex items-center gap-2 md:gap-3 px-2.5 py-1.5 md:px-4 md:py-3 rounded-md md:rounded-xl text-xs md:text-sm font-medium transition-all duration-200 ${
                   isActive
                     ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400 shadow-sm'
                     : 'text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800/50 hover:text-gray-900 dark:hover:text-white'
                 }`}
               >
-                <Icon className={`h-5 w-5 ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-400 dark:text-gray-500'}`} />
+                <Icon className={`h-4 w-4 md:h-5 md:w-5 ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-400 dark:text-gray-500'}`} />
                 {item.name}
               </Link>
             );
           })}
         </nav>
+ 
+        {/* Admin Sign Out Button */}
+        <button
+          onClick={logout}
+          className="mt-auto flex items-center gap-2 md:gap-3 px-2.5 py-1.5 md:px-4 md:py-3 rounded-md md:rounded-xl text-xs md:text-sm font-medium text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/20 transition-all duration-200 border border-transparent hover:border-red-200 dark:hover:border-red-900/30"
+        >
+          <LogOut className="h-4 w-4 md:h-5 md:w-5" />
+          Sign Out
+        </button>
       </div>
 
       {/* Main Content Area */}
