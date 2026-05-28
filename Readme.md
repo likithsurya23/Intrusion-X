@@ -1,4 +1,4 @@
-#  Lightweight Hybrid CNN & ConvNeXt-Tiny Intrusion Detection System (IDS) for IoT Networks
+#  IntrusionX - Lightweight Hybrid CNN & ConvNeXt-Tiny Intrusion Detection System (IDS) for IoT Networks
 
 <div align="center">
 
@@ -215,40 +215,7 @@ npm run dev
 
 ## 📡 API Documentation
 
-### 1. Token Authentication Endpoints
-```http
-POST /api/token/
-Content-Type: application/json
-
-{
-    "username": "likithsurya555@gmail.com",
-    "password": "Admin@123"
-}
-
-Response:
-{
-    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-}
-```
-
-```http
-POST /api/token/refresh/
-Content-Type: application/json
-
-{
-    "refresh": "<REFRESH_TOKEN>"
-}
-
-Response:
-{
-    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-}
-```
-
----
-
-### 2. Prediction Endpoints (Protected - Require Bearer Token)
+### 1. Prediction Endpoints (Protected - Require Bearer Token)
 
 ```http
 POST /api/predict/
@@ -290,46 +257,44 @@ Response:
 
 ---
 
-## 📊 Data Flow
+## 📊 Unified Data Flow
 
-### 1. Single Prediction Sequence Flow
 ```mermaid
 sequenceDiagram
-    actor User
+    actor User as User / Admin
     participant FE as Next.js Client
     participant BE as Django API
     participant PyTorch as Hybrid Model
     
-    User->>FE: Input 46 comma-separated features
-    FE->>FE: Validate feature format & count (exactly 46)
-    FE->>BE: POST /api/predict/ (Header: Bearer Token)
-    BE->>BE: Authenticate Request (JWT)
-    BE->>BE: Load Scaler & Transform Inputs
-    BE->>PyTorch: Run Inference
-    PyTorch-->>BE: Classification & Confidence Score
-    BE->>BE: Create Audit Log
-    BE-->>FE: HTTP 200 (JSON Response)
-    FE->>User: Display results, interactive gauges, & severity alerts
-```
-
-### 2. Batch Prediction Sequence Flow
-```mermaid
-sequenceDiagram
-    actor Admin/User
-    participant FE as Next.js Client
-    participant BE as Django API
-    participant PyTorch as Hybrid Model
+    User->>FE: Initiate Prediction Request
     
-    Admin/User->>FE: Upload CSV file containing packet flows
-    FE->>FE: Verify file format
-    FE->>BE: POST /api/batch-predict/ (Multipart Form Data)
+    alt Single Prediction Flow
+        User->>FE: Input 46 comma-separated features
+        FE->>FE: Validate feature format & count (exactly 46)
+        FE->>BE: POST /api/predict/ (Header: Bearer Token)
+    else Batch Prediction Flow
+        User->>FE: Upload CSV file containing packet flows
+        FE->>FE: Verify file format
+        FE->>BE: POST /api/batch-predict/ (Multipart Form Data)
+    end
+    
     BE->>BE: Authenticate Request (JWT)
-    BE->>BE: Parse CSV and preprocess feature arrays
-    BE->>PyTorch: Execute Batch Inference
-    PyTorch-->>BE: Predictions array
-    BE->>BE: Aggregate statistics (Attack rates, classifications)
-    BE-->>FE: HTTP 200 (JSON Metrics Response)
-    FE->>Admin/User: Render Recharts visualizations, history table & export reports
+    
+    alt Single Prediction Processing
+        BE->>BE: Load Scaler & Transform Single Feature Row
+        BE->>PyTorch: Run Single-Row Inference
+        PyTorch-->>BE: Classification & Confidence Score
+        BE->>BE: Create Audit Log
+        BE-->>FE: HTTP 200 (JSON Response)
+        FE->>User: Display results, interactive gauges, & severity alerts
+    else Batch Prediction Processing
+        BE->>BE: Parse CSV and preprocess multiple feature arrays
+        BE->>PyTorch: Execute Batch Inference (tensor stack)
+        PyTorch-->>BE: Predictions & confidence arrays
+        BE->>BE: Aggregate statistics (Attack rates, classifications)
+        BE-->>FE: HTTP 200 (JSON Metrics Response)
+        FE->>User: Render Recharts visualizations, history table & export reports
+    end
 ```
 
 ---
@@ -434,6 +399,6 @@ all copies or substantial portions of the Software.
 
 **⭐ Star this repository if you find it useful for your IoT security projects!**
 
-[⬆ Back to Top](#lightweight-hybrid-cnn--convnext-tiny-intrusion-detection-system-ids-for-iot-networks)
+[⬆ Back to Top](#intrusionx---lightweight-hybrid-cnn--convnext-tiny-intrusion-detection-system-ids-for-iot-networks)
 
 </div>
