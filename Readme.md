@@ -1,4 +1,4 @@
-#  IntrusionX - Lightweight Hybrid CNN & ConvNeXt-Tiny Intrusion Detection System (IDS) for IoT Networks
+#  IntrusionX - Lightweight Hybrid CNN & ConvNeXt-Tiny IDS for IoT Networks
 
 <div align="center">
 
