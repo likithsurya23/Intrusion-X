@@ -1,0 +1,29 @@
+# Environments
+.venv/
+venv/
+node_modules/
+.env
+.git
+.gitignore
+
+# Python Cache
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+
+# Node Cache
+**/dist/
+**/dist-ssr/
+.npm
+.eslintcache
+
+# Logs and system
+*.log
+brain/
+.system_generated/
+*.webp
+
+# OS Files
+.DS_Store
+Thumbs.db

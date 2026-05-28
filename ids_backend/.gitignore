@@ -1,0 +1,37 @@
+# ===============================
+# Django specific
+# ===============================
+
+# Django files
+db.sqlite3
+staticfiles/
+media/
+
+# Django cache
+*.pyc
+__pycache__/
+
+# Migrations cache
+*/migrations/__pycache__/
+
+# Environment files
+.env
+
+# Logs
+*.log
+
+# PyTorch cache
+*.pt
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Virtual environments
+venv/
+env/
+.venv/

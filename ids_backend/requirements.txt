@@ -1,0 +1,7 @@
+django
+djangorestframework
+torch
+numpy
+pandas
+scikit-learn
+gunicorn

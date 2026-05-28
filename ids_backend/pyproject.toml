@@ -1,0 +1,32 @@
+[project]
+name = "ids-backend"
+version = "0.1.0"
+description = "Lightweight Hybrid CNN and ConvNeXt-Tiny IDS for IoT Networks"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=6.0.2",
+    "django-cors-headers>=4.9.0",
+    "django-environ>=0.12.0",
+    "djangorestframework>=3.16.1",
+    "numpy>=2.0.0",
+    "pandas>=2.0.0",
+    "scikit-learn==1.6.1",
+    "torch>=2.0.0",
+    "torchvision",
+    "torchaudio",
+    "gunicorn>=23.0.0",
+    "whitenoise>=6.9.0",
+    "djangorestframework-simplejwt>=5.5.1",
+    "psycopg2-binary>=2.9.9",
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }
+torchaudio = { index = "pytorch-cpu" }
