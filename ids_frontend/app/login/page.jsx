@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Shield, Mail, Lock, User, LogIn, ArrowRight } from 'lucide-react';
 import { useAuth } from '@/lib/auth/auth';
 import { useRouter } from 'next/navigation';
@@ -43,21 +42,15 @@ export default function Login() {
       {/* Background decorations - Responsive blur effects */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md h-[400px] bg-gradient-to-r from-blue-500/20 to-violet-500/20 blur-[100px] rounded-full pointer-events-none" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+      <div
         className="w-full max-w-[20rem] sm:max-w-sm space-y-3.5 sm:space-y-5 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl p-3.5 sm:p-6 rounded-xl sm:rounded-2xl border border-blue-200 dark:border-blue-900/50 shadow-xl dark:shadow-2xl relative z-10 my-4 sm:my-8 transition-colors duration-300"
       >
         <div className="text-center">
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+          <div
             className="mx-auto h-10 w-10 sm:h-12 sm:w-12 bg-gradient-to-br from-blue-600 to-violet-600 rounded-xl flex items-center justify-center shadow-lg mb-2 sm:mb-3"
           >
             <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
-          </motion.div>
+          </div>
           <h2 className="text-lg sm:text-xl font-extrabold text-gray-900 dark:text-white mb-1 transition-colors">
             {isLogin ? 'Welcome Back' : 'Create Account'}
           </h2>
@@ -159,9 +152,7 @@ export default function Login() {
             </div>
           )}
 
-          <motion.button
-            whileHover={{ scale: isLoading ? 1 : 1.02 }}
-            whileTap={{ scale: isLoading ? 1 : 0.98 }}
+          <button
             type="submit"
             disabled={isLoading}
             className="group relative w-full flex justify-center py-1.5 sm:py-2 px-3 border border-transparent text-xs font-bold rounded-lg text-white bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-md disabled:opacity-70 disabled:cursor-not-allowed"
@@ -171,7 +162,7 @@ export default function Login() {
             </span>
             {isLoading ? 'Processing...' : (isLogin ? 'Sign In' : 'Create Account')}
             {!isLoading && <ArrowRight className="ml-1 h-3.5 w-3.5 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-1 transition-all duration-300" />}
-          </motion.button>
+          </button>
         </form>
 
         <div className="text-center">
@@ -188,9 +179,7 @@ export default function Login() {
         {/* Sidebar Style Button */}
         <div className="pt-2 sm:pt-3 border-t border-gray-200 dark:border-gray-800 transition-colors mt-4">
           <Link href="/admin-login" className="block">
-            <motion.div
-              whileHover={{ x: 5 }}
-              whileTap={{ scale: 0.98 }}
+            <div
               className="flex items-center gap-2 sm:gap-3 px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-red-300 dark:hover:border-red-500/50 transition-all duration-300 group cursor-pointer"
             >
               <div className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-red-100 to-orange-100 dark:from-red-600/20 dark:to-orange-600/20 group-hover:from-red-200 group-hover:to-orange-200 dark:hover:from-red-600/30 dark:hover:to-orange-600/30 transition-colors">
@@ -202,11 +191,11 @@ export default function Login() {
                 </p>
               </div>
               <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gray-400 dark:text-gray-500 group-hover:text-red-600 dark:group-hover:text-red-400 group-hover:translate-x-1 transition-all duration-300" />
-            </motion.div>
+            </div>
           </Link>
         </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

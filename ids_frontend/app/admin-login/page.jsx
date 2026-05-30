@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Shield, Lock, User, LogIn, ArrowRight, ChevronLeft } from 'lucide-react';
 import { useAuth } from '@/lib/auth/auth';
 import { useRouter } from 'next/navigation';
@@ -37,22 +36,16 @@ export default function AdminLogin() {
       <div className="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-red-600/10 rounded-full blur-[80px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 sm:w-96 sm:h-96 bg-orange-600/10 rounded-full blur-[80px] pointer-events-none" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+      <div
         className="w-full max-w-[20rem] sm:max-w-md space-y-4 sm:space-y-6 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-red-200 dark:border-red-900/50 shadow-xl dark:shadow-2xl relative z-10 transition-colors duration-300"
       >
         {/* Header Section */}
         <div className="text-center space-y-2 sm:space-y-3">
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+          <div
             className="mx-auto h-10 w-10 sm:h-14 sm:w-14 bg-gradient-to-br from-red-600 to-orange-600 rounded-xl flex items-center justify-center shadow-lg"
           >
             <Shield className="h-5 w-5 sm:h-7 sm:w-7 text-white" />
-          </motion.div>
+          </div>
           <h2 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white transition-colors">
             Administrator Portal
           </h2>
@@ -64,13 +57,11 @@ export default function AdminLogin() {
         {/* Form Section */}
         <form className="space-y-4 sm:space-y-5" onSubmit={handleSubmit}>
           {error && (
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
+            <div
               className="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-2 sm:p-4 rounded-md transition-colors"
             >
               <p className="text-[10px] sm:text-xs text-red-600 dark:text-red-400 break-words">{error}</p>
-            </motion.div>
+            </div>
           )}
           
           <div className="space-y-3 sm:space-y-4">
@@ -118,9 +109,7 @@ export default function AdminLogin() {
           </div>
 
           {/* Submit Button */}
-          <motion.button
-            whileHover={{ scale: isLoading ? 1 : 1.02 }}
-            whileTap={{ scale: isLoading ? 1 : 0.98 }}
+          <button
             type="submit"
             disabled={isLoading}
             className="group relative w-full flex justify-center items-center gap-2 py-2 sm:py-2.5 px-3 border border-transparent text-xs sm:text-sm font-bold rounded-lg text-white bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 shadow-md disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300"
@@ -130,15 +119,13 @@ export default function AdminLogin() {
             {!isLoading && (
               <ArrowRight className="h-3.5 w-3.5 sm:h-5 sm:w-5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
             )}
-          </motion.button>
+          </button>
         </form>
         
         {/* Sidebar Style Button */}
         <div className="pt-2 sm:pt-3 border-t border-gray-200 dark:border-gray-800">
           <Link href="/login" className="block">
-            <motion.div
-              whileHover={{ x: 5 }}
-              whileTap={{ scale: 0.98 }}
+            <div
               className="flex items-center gap-2 sm:gap-3 px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-gray-100 dark:bg-gray-800/50 hover:bg-gray-200 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-red-500/50 transition-all duration-300 group cursor-pointer"
             >
               <div className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-red-600/20 to-orange-600/20 group-hover:from-red-600/30 group-hover:to-orange-600/30 transition-colors">
@@ -150,10 +137,10 @@ export default function AdminLogin() {
                 </p>
               </div>
               <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gray-500 group-hover:text-red-400 group-hover:translate-x-1 transition-all duration-300" />
-            </motion.div>
+            </div>
           </Link>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

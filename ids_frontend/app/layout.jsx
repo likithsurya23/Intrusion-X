@@ -14,8 +14,6 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-import SplashScreen from "../components/Loader/SplashScreen";
-
 export const metadata = {
   title: "IntrusionX",
   description: "Hybrid CNN & ConvNeXt-Tiny IDS for IoT Networks",
@@ -26,15 +24,13 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable} min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 font-sans`}>
         <div className="w-full min-h-screen flex flex-col">
-          <SplashScreen>
-            <ThemeProvider>
-              <AuthProvider>
-                <LayoutWrapper>
-                  {children}
-                </LayoutWrapper>
-              </AuthProvider>
-            </ThemeProvider>
-          </SplashScreen>
+          <ThemeProvider>
+            <AuthProvider>
+              <LayoutWrapper>
+                {children}
+              </LayoutWrapper>
+            </AuthProvider>
+          </ThemeProvider>
         </div>
       </body>
     </html>
