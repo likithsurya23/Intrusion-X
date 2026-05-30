@@ -7,8 +7,8 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function AdminLogin() {
-  const [username, setUsername] = useState('likithsurya555@gmail.com');
-  const [password, setPassword] = useState('Admin@123');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();

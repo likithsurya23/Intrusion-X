@@ -3,7 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "../lib/context/ThemeContext";
 import { AuthProvider } from "../lib/auth/auth";
 import LayoutWrapper from "../components/LayoutWrapper/LayoutWrapper";
-import { MotionConfig } from "framer-motion";
+import SplashScreen from "../components/Loader/SplashScreen";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable} min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 font-sans`}>
         <div className="w-full min-h-screen flex flex-col">
-          <MotionConfig transition={{ duration: 0 }} reducedMotion="always">
+          <SplashScreen>
             <ThemeProvider>
               <AuthProvider>
                 <LayoutWrapper>
@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
                 </LayoutWrapper>
               </AuthProvider>
             </ThemeProvider>
-          </MotionConfig>
+          </SplashScreen>
         </div>
       </body>
     </html>
