@@ -13,8 +13,6 @@ dependencies = [
     "pandas>=2.0.0",
     "scikit-learn==1.6.1",
     "torch>=2.0.0",
-    "torchvision",
-    "torchaudio",
     "gunicorn>=23.0.0",
     "whitenoise>=6.9.0",
     "djangorestframework-simplejwt>=5.5.1",
@@ -28,5 +26,3 @@ explicit = true
 
 [tool.uv.sources]
 torch = { index = "pytorch-cpu" }
-torchvision = { index = "pytorch-cpu" }
-torchaudio = { index = "pytorch-cpu" }
